@@ -1,5 +1,6 @@
 package com.devsuperior.movieflix.dto;
 
+import com.devsuperior.movieflix.entities.Review;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,57 +12,78 @@ public class ReviewDTO {
     private String text;
 
     @NotNull(message = "Campo requerido")
-    private Long movieId;    
-    
+    private Long movieId;
+
     private Long userId;
     private String userName;
     private String userEmail;
-    
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public ReviewDTO() {
+    }
 
-	public String getText() {
-		return text;
-	}
+    public ReviewDTO(Long id, String text, Long movieId, Long userId, String userName, String userEmail) {
+        this.id = id;
+        this.text = text;
+        this.movieId = movieId;
+        this.userId = userId;
+        this.userName = userName;
+        this.userEmail = userEmail;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public ReviewDTO(Review review) {
+        id = review.getId();
+        text = review.getText();
+        movieId = review.getMovie().getId();
+        userId = review.getUser().getId();
+        userName = review.getUser().getUsername();
+        userEmail = review.getUser().getEmail();
+    }
 
-	public Long getMovieId() {
-		return movieId;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setMovieId(Long movieId) {
-		this.movieId = movieId;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getUserId() {
-		return userId;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	public String getUserName() {
-		return userName;
-	}
+    public Long getMovieId() {
+        return movieId;
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
+    }
 
-	public String getUserEmail() {
-		return userEmail;
-	}
+    public Long getUserId() {
+        return userId;
+    }
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 }
